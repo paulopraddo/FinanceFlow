@@ -1,4 +1,4 @@
-package com.prado.paulo.FinanceFlow.app.auth.entrypoints;
+package com.prado.paulo.FinanceFlow.app.auth.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.prado.paulo.FinanceFlow.app.auth.provider.model.AuthenticationDTO;
-import com.prado.paulo.FinanceFlow.app.auth.provider.model.LoginResponseDTO;
-import com.prado.paulo.FinanceFlow.app.auth.provider.model.RegisterDTO;
-import com.prado.paulo.FinanceFlow.app.auth.provider.model.User;
-import com.prado.paulo.FinanceFlow.app.auth.repository.UserRepository;
-import com.prado.paulo.FinanceFlow.domain.auth.service.TokenService;
+import com.prado.paulo.FinanceFlow.app.auth.dtos.AuthenticationDTO;
+import com.prado.paulo.FinanceFlow.app.auth.dtos.LoginResponseDTO;
+import com.prado.paulo.FinanceFlow.app.auth.dtos.RegisterDTO;
+import com.prado.paulo.FinanceFlow.app.auth.service.TokenService;
+import com.prado.paulo.FinanceFlow.domain.auth.model.User;
+import com.prado.paulo.FinanceFlow.domain.auth.repository.UserRepository;
 
 @RestController
 @RequestMapping("/auth")
