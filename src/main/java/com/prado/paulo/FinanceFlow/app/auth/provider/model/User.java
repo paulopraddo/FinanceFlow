@@ -1,8 +1,10 @@
 package com.prado.paulo.FinanceFlow.app.auth.provider.model;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,14 +35,22 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String login;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private UserRole role;
 
-    public User(String login, String password, UserRole role) {
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createAt;
+
+    public User(String login, String email, String password, UserRole role) {
         this.login = login;
+        this.email = email;
         this.password = password;
         this.role = role;
     }
