@@ -32,7 +32,7 @@ public class Goal {
     private BigDecimal targetAmount;
 
     @Column(nullable = false)
-    private BigDecimal currentAmount = BigDecimal.ZERO;
+    private BigDecimal currentAmount;
 
     @ManyToOne
     @JoinColumn(name = "users_id", nullable = false)
@@ -48,4 +48,11 @@ public class Goal {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePersist() {
+    if (currentAmount == null) {
+        currentAmount = BigDecimal.ZERO;
+    }
+}
 }
