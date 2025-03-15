@@ -36,10 +36,10 @@ public class Account {
     private String name;
 
     @Column(nullable = false)
-    private BigDecimal balance;
+    private String type;
 
     @Column(nullable = false)
-    private String type;
+    private BigDecimal balance;
 
     @ManyToOne
     @JoinColumn(name = "users_id")

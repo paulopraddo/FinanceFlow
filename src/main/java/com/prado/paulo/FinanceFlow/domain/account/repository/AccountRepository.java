@@ -8,4 +8,5 @@ import com.prado.paulo.FinanceFlow.domain.account.model.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
 
+    Account findByName(String name);
 }
