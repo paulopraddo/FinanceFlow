@@ -1,5 +1,8 @@
 package com.prado.paulo.FinanceFlow.app.account.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,28 @@ public class AccountService {
     @Autowired
     UserRepository userRepository;
 
+    public GetAccountResponseDTO getAccount(String name) {
+
+        Account model = this.accountRepository.findByName(name);
+
+        return new GetAccountResponseDTO(model.getName(), 
+            model.getType(), 
+            model.getBalance(), 
+            model.getUser().getLogin());
+    }
+
+    public List<GetAccountResponseDTO> getListOfAccounts() {
+
+        List<Account> accounts = this.accountRepository.findAll();
+
+        return accounts.stream()
+            .map(account -> new GetAccountResponseDTO(account.getName(), 
+                account.getType(), 
+                account.getBalance(), 
+                account.getUser().getLogin()))
+            .collect(Collectors.toList());
+    }
+
     public Account uploadAccount(UploadAccountDTO dto) {
 
         Account model = Account.builder()
@@ -29,15 +54,5 @@ public class AccountService {
 
 
         return this.accountRepository.save(model);
-    }
-
-    public GetAccountResponseDTO getAccount(String name) {
-
-        Account model = this.accountRepository.findByName(name);
-
-        return new GetAccountResponseDTO(model.getName(), 
-            model.getType(), 
-            model.getBalance(), 
-            model.getUser().getLogin());
     }
 }

@@ -1,5 +1,7 @@
 package com.prado.paulo.FinanceFlow.app.account.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,6 +34,14 @@ public class AccountController {
         return ResponseEntity.ok().body(dto);
     }
 
+    @GetMapping
+    public ResponseEntity<List<GetAccountResponseDTO>> getListOfAccounts() {
+
+        List<GetAccountResponseDTO> dtos = this.accountService.getListOfAccounts();
+
+        return ResponseEntity.ok().body(dtos);
+    }
+
     @PostMapping
     public ResponseEntity<UploadAccountDTO> uploadAccount(@RequestBody @Validated UploadAccountDTO dto) {
 
@@ -39,4 +49,5 @@ public class AccountController {
         
         return ResponseEntity.ok().body(dto);
     }
+    
 }
