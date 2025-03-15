@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.prado.paulo.FinanceFlow.app.auth.repository.UserRepository;
-import com.prado.paulo.FinanceFlow.domain.auth.service.TokenService;
+import com.prado.paulo.FinanceFlow.app.auth.service.TokenService;
+import com.prado.paulo.FinanceFlow.domain.auth.repository.UserRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

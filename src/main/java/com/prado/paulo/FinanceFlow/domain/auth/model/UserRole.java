@@ -1,4 +1,4 @@
-package com.prado.paulo.FinanceFlow.app.auth.provider.model;
+package com.prado.paulo.FinanceFlow.domain.auth.model;
 
 public enum UserRole {
 
