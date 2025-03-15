@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.prado.paulo.FinanceFlow.domain.auth.model.User;
+import com.prado.paulo.FinanceFlow.domain.account.model.Account;
 import com.prado.paulo.FinanceFlow.domain.category.model.Category;
 
 import jakarta.persistence.Column;
@@ -40,8 +40,8 @@ public class Transaction {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
