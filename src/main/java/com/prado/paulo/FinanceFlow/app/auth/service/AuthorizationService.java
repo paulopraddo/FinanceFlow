@@ -1,4 +1,4 @@
-package com.prado.paulo.FinanceFlow.domain.auth.service;
+package com.prado.paulo.FinanceFlow.app.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.prado.paulo.FinanceFlow.app.auth.repository.UserRepository;
+import com.prado.paulo.FinanceFlow.domain.auth.repository.UserRepository;
 
 @Service
 public class AuthorizationService implements UserDetailsService{

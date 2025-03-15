@@ -1,4 +1,4 @@
-package com.prado.paulo.FinanceFlow.domain.auth.service;
+package com.prado.paulo.FinanceFlow.app.auth.service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.prado.paulo.FinanceFlow.app.auth.provider.model.User;
+import com.prado.paulo.FinanceFlow.domain.auth.model.User;
 
 @Service
 public class TokenService {
