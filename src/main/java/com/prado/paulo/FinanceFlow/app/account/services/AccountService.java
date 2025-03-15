@@ -3,6 +3,7 @@ package com.prado.paulo.FinanceFlow.app.account.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prado.paulo.FinanceFlow.app.account.dtos.GetAccountResponseDTO;
 import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountDTO;
 import com.prado.paulo.FinanceFlow.domain.account.model.Account;
 import com.prado.paulo.FinanceFlow.domain.account.repository.AccountRepository;
@@ -28,5 +29,15 @@ public class AccountService {
 
 
         return this.accountRepository.save(model);
+    }
+
+    public GetAccountResponseDTO getAccount(String name) {
+
+        Account model = this.accountRepository.findByName(name);
+
+        return new GetAccountResponseDTO(model.getName(), 
+            model.getType(), 
+            model.getBalance(), 
+            model.getUser().getLogin());
     }
 }
