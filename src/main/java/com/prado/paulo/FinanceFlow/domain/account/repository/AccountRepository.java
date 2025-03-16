@@ -12,6 +12,8 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 
     Account findByName(String name);
 
+    boolean existsByUserIdAndName(String userId, String name);
+
     @Transactional
     void deleteByName(String name);
 }
