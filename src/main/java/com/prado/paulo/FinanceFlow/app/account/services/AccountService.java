@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.prado.paulo.FinanceFlow.app.account.dtos.GetAccountResponseDTO;
+import com.prado.paulo.FinanceFlow.app.account.dtos.UpdateAccountRequestDTO;
 import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountDTO;
 import com.prado.paulo.FinanceFlow.domain.account.model.Account;
 import com.prado.paulo.FinanceFlow.domain.account.repository.AccountRepository;
@@ -52,7 +53,15 @@ public class AccountService {
         .user((User) this.userRepository.findByLogin(dto.userLogin()))
         .build();
 
-
         return this.accountRepository.save(model);
+    }
+
+    public void updateAccount(UpdateAccountRequestDTO dto) {
+        Account model = this.accountRepository.findByName(dto.name());
+
+        if (dto.newName() != null) model.setName(dto.newName());
+        if (dto.type() != null) model.setType(dto.type());
+
+        this.accountRepository.save(model);
     }
 }
