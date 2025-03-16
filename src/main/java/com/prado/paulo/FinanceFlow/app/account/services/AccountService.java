@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.prado.paulo.FinanceFlow.app.account.dtos.GetAccountResponseDTO;
 import com.prado.paulo.FinanceFlow.app.account.dtos.UpdateAccountRequestDTO;
-import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountDTO;
+import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountRequestDTO;
 import com.prado.paulo.FinanceFlow.domain.account.model.Account;
 import com.prado.paulo.FinanceFlow.domain.account.repository.AccountRepository;
 import com.prado.paulo.FinanceFlow.domain.auth.model.User;
@@ -45,12 +45,24 @@ public class AccountService {
             .collect(Collectors.toList());
     }
 
-    public Account uploadAccount(UploadAccountDTO dto) {
+    public Account uploadAccount(UploadAccountRequestDTO dto) {
+
+        User user = (User) this.userRepository.findByLogin(dto.userLogin());
+
+        if (user == null) {
+            throw new RuntimeException("User not found with login: " + dto.userLogin());
+        }
+
+        boolean accountExists = accountRepository.existsByUserIdAndName(user.getId(), dto.name());
+
+        if(accountExists) {
+            throw new RuntimeException("An account with this name already exists for the user.");
+        }
 
         Account model = Account.builder()
         .name(dto.name())
         .type(dto.type())
-        .user((User) this.userRepository.findByLogin(dto.userLogin()))
+        .user(user)
         .build();
 
         return this.accountRepository.save(model);
@@ -68,4 +80,6 @@ public class AccountService {
     public void deleteAccount(String name) {
         this.accountRepository.deleteByName(name);
     }
+
+    
 }

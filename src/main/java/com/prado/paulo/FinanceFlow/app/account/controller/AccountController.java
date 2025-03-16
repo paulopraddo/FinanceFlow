@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prado.paulo.FinanceFlow.app.account.dtos.GetAccountResponseDTO;
 import com.prado.paulo.FinanceFlow.app.account.dtos.UpdateAccountRequestDTO;
-import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountDTO;
+import com.prado.paulo.FinanceFlow.app.account.dtos.UploadAccountRequestDTO;
 import com.prado.paulo.FinanceFlow.app.account.services.AccountService;
 
 import lombok.AllArgsConstructor;
@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<UploadAccountDTO> uploadAccount(@RequestBody @Validated UploadAccountDTO dto) {
+    public ResponseEntity<UploadAccountRequestDTO> uploadAccount(@RequestBody @Validated UploadAccountRequestDTO dto) {
 
         this.accountService.uploadAccount(dto);
         
