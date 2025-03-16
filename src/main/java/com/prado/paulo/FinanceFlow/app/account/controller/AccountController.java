@@ -3,9 +3,9 @@ package com.prado.paulo.FinanceFlow.app.account.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +58,14 @@ public class AccountController {
     public ResponseEntity<String> updateAccount(@RequestBody @Validated UpdateAccountRequestDTO dto) {
 
         this.accountService.updateAccount(dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{name}")
+    public ResponseEntity<String> deleteAccount(@PathVariable String name) {
+
+        this.accountService.deleteAccount(name);
 
         return ResponseEntity.noContent().build();
     }

@@ -64,4 +64,8 @@ public class AccountService {
 
         this.accountRepository.save(model);
     }
+
+    public void deleteAccount(String name) {
+        this.accountRepository.deleteByName(name);
+    }
 }
